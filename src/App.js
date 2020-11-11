@@ -41,21 +41,43 @@ class App extends Component {
     // )
 
     //関数コンポーネントの呼び出し
+    // return (
+    //   <div>
+    //     <Cat />
+    //   </div>
+    // )
+
+    //propsを使用した関数コンポーネントの呼び出し
+    const profiles = [
+      {name: "Naoyuki", age: 26},
+      {name: "Hanako", age: 10},
+      {name: "Hanako"}
+    ]
     return (
       <div>
-        <Cat />
-        <Cat />
-        <Cat />
-        <Cat />
-        <Cat />
+        {
+          profiles.map((profile, index) => {
+            return <User name={profile.name} age={profile.age} key={index} />
+          })
+        }
       </div>
     )
   }
 }
 
 //関数コンポーネント
-const Cat = () => {
-  return <div>Meow!</div>
+// const Cat = () => {
+//   return <div>Meow!</div>
+// }
+
+//関数コンポーネント
+const User = (props) => {
+  return <div>Hello, I am {props.name}, and {props.age} years old!</div>
+}
+
+//propsの初期値を設定
+User.defaultProps = {
+  age: 1
 }
 
 export default App;
