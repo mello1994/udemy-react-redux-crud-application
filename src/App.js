@@ -1,5 +1,6 @@
 import { render } from "@testing-library/react";
 import React, { Component } from "react";
+import PropTypes from 'prop-types';
 
 //クラスコンポーネント
 class App extends Component {
@@ -51,7 +52,10 @@ class App extends Component {
     const profiles = [
       {name: "Naoyuki", age: 26},
       {name: "Hanako", age: 10},
-      {name: "Hanako"}
+      //nameはproptypeで文字列型を期待しているためコンソールにwarningが出力される
+      {name: 1},
+      //ageはproptypeで数値型を期待しているためコンソールにwarningが出力される
+      {age: "2"},
     ]
     return (
       <div>
@@ -75,8 +79,15 @@ const User = (props) => {
   return <div>Hello, I am {props.name}, and {props.age} years old!</div>
 }
 
+//propsの型定義
+User.propTypes = {
+  name: PropTypes.string,
+  age: PropTypes.number
+}
+
 //propsの初期値を設定
 User.defaultProps = {
+  name: "NoName",
   age: 1
 }
 
