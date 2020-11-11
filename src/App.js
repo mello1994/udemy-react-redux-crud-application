@@ -1,6 +1,7 @@
 import { render } from "@testing-library/react";
 import React, { Component } from "react";
 
+//クラスコンポーネント
 class App extends Component {
   render(){
     //変数を使用
@@ -32,14 +33,29 @@ class App extends Component {
     // )
 
     //複数returnする場合は、React.Fragmentで囲む
-    return(
-      <React.Fragment>
-        <label htmlFor="bar">bar</label>
-        <input id="bar" type="text" onChange={() => {console.log("I am clicked.")}} />
-      </React.Fragment>
-    )
+    // return(
+    //   <React.Fragment>
+    //     <label htmlFor="bar">bar</label>
+    //     <input id="bar" type="text" onChange={() => {console.log("I am clicked.")}} />
+    //   </React.Fragment>
+    // )
 
+    //関数コンポーネントの呼び出し
+    return (
+      <div>
+        <Cat />
+        <Cat />
+        <Cat />
+        <Cat />
+        <Cat />
+      </div>
+    )
   }
+}
+
+//関数コンポーネント
+const Cat = () => {
+  return <div>Meow!</div>
 }
 
 export default App;
