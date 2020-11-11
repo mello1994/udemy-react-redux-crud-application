@@ -2,93 +2,33 @@ import { render } from "@testing-library/react";
 import React, { Component } from "react";
 import PropTypes from 'prop-types';
 
-//クラスコンポーネント
-class App extends Component {
-  render(){
-    //変数を使用
-    // const greeting = "Hi!";
+const App = () => (<Counter></Counter>)
 
-    //classは予約語なので使えない、代わりにclassNameを使う
-    // const dom = <h1 className="foo">{greeting} TOM</h1>
-    // return dom
+class Counter extends Component {
+  constructor(props) {
+    super(props)
+    this.state = { count: 0 }
+  }
 
-    //onClickを使用
-    // return <input type="text" onClick={() => {console.log("I am clicked.")}} />;
+  handlePlusButton = () => {
+    this.setState({ count: this.state.count + 1})
+    //setStateを使用するとrender()が実行され、再描画される
+  }
 
-    //onChangeを使用
-    // return <input type="text" onChange={() => {console.log("I am clicked.")}} />;
+  handleMinusButton = () => {
+    this.setState({ count: this.state.count - 1})
+    //setStateを使用しなかった場合、render()が実行されず状態が変わらない
+  }
 
-    //forは予約語なので使いえない、代わりにhtmlForを使う
-    // return(
-    //   <div>
-    //     <label htmlFor="bar">bar</label>
-    //     <input id="bar" type="text" onChange={() => {console.log("I am clicked.")}} />
-    //   </div>
-    // )
-
-    //最上位のタグは1つでなければいけない
-    //以下はエラーとなる
-    // return(
-    //     <label htmlFor="bar">bar</label>
-    //     <input id="bar" type="text" onChange={() => {console.log("I am clicked.")}} />
-    // )
-
-    //複数returnする場合は、React.Fragmentで囲む
-    // return(
-    //   <React.Fragment>
-    //     <label htmlFor="bar">bar</label>
-    //     <input id="bar" type="text" onChange={() => {console.log("I am clicked.")}} />
-    //   </React.Fragment>
-    // )
-
-    //関数コンポーネントの呼び出し
-    // return (
-    //   <div>
-    //     <Cat />
-    //   </div>
-    // )
-
-    //propsを使用した関数コンポーネントの呼び出し
-    const profiles = [
-      {name: "Naoyuki", age: 26},
-      {name: "Hanako", age: 10},
-      //nameはproptypeで文字列型を期待しているためコンソールにwarningが出力される
-      {name: 1},
-      //ageはproptypeで数値型を期待しているためコンソールにwarningが出力される
-      {age: "2"},
-    ]
+  render() {
     return (
-      <div>
-        {
-          profiles.map((profile, index) => {
-            return <User name={profile.name} age={profile.age} key={index} />
-          })
-        }
-      </div>
+      <React.Fragment>
+        <div>counter: { this.state.count }</div>
+        <button onClick={this.handlePlusButton}>+1</button>
+        <button onClick={this.handleMinusButton}>-1</button>
+      </React.Fragment>
     )
   }
-}
-
-//関数コンポーネント
-// const Cat = () => {
-//   return <div>Meow!</div>
-// }
-
-//関数コンポーネント
-const User = (props) => {
-  return <div>Hello, I am {props.name}, and {props.age} years old!</div>
-}
-
-//propsの型定義
-User.propTypes = {
-  name: PropTypes.string,
-  age: PropTypes.number
-}
-
-//propsの初期値を設定
-User.defaultProps = {
-  name: "NoName",
-  age: 1
 }
 
 export default App;
