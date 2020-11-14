@@ -7,5 +7,6 @@ export const READ_EVENTS = 'READ_EVENTS'
 
 export const readEvents = () => async dispatch => {
         const response = await axios.get('https://udemy-utils.herokuapp.com/api/v1/events?token=token123')
+        console.log(response)
         dispatch({ type: READ_EVENTS, response})
     }

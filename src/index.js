@@ -7,7 +7,7 @@ import thunk from 'redux-thunk'
 import './index.css';
 import reducer from './reducers'
 import EventsIndex from './components/events_index';
-import reportWebVitals from './reportWebVitals';
+import registerServiceWorker from './registerServiceWorker';
 
 const store = createStore(reducer, applyMiddleware(thunk))
 
@@ -15,5 +15,6 @@ ReactDOM.render(
   <Provider store={store}>
     <EventsIndex />
   </Provider>,
-  document.getElementById('root'));
-reportWebVitals();
+  document.getElementById('root')
+);
+registerServiceWorker();
